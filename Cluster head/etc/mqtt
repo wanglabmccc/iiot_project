@@ -1,0 +1,15 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+start() {
+		cd /root/
+        python /root/mqtt-mutithread.py br-lan &
+        python /root/proxy_connectionless.py br-lan &
+        python /root/send_data.py &
+        # commands to launch application
+}
+stop() {
+        killall -9 python
+        # commands to kill application
+}
